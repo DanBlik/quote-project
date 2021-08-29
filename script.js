@@ -8,7 +8,7 @@ const loader = document.getElementById("loader");
 const ruBtn = document.querySelector(".ruBtn");
 const engBtn = document.querySelector(".engBtn");
 
-let lang = "ru";
+let lang = "en";
 
 const switchLang = (e) => {
   if (e.target.classList.contains("ruBtn")) {
@@ -16,12 +16,16 @@ const switchLang = (e) => {
       ruBtn.classList.add("active");
       engBtn.classList.remove("active");
       lang = "ru";
+      quoteBtn.innerText = 'Новая Цитата'
+      getQuote()
     }
   } else {
     if (lang !== "en") {
       engBtn.classList.add("active");
       ruBtn.classList.remove("active");
       lang = "en";
+      quoteBtn.innerText = 'New Quote'
+      getQuote()
     }
   }
 };
@@ -48,7 +52,7 @@ async function getQuote() {
     const data = await response.json();
 
     if (data.quoteAuthor === "") {
-      authorText.iinerText = "Unknown";
+      authorText.innerText = "Unknown";
     } else {
       authorText.innerText = data.quoteAuthor;
     }
